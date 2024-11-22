@@ -1,24 +1,23 @@
-# Compiled class file
-*.class
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Datos de Sensores</title>
+</head>
+<body>
+    <h1>Datos de Sensores</h1>
+    <div id="data"></div>
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.nar
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+    <script>
+        fetch('https://raw.githubusercontent.com/tu_usuario/tu_repositorio/main/data.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('data').innerHTML = `
+                    <p>Temperatura: ${data.temperature}°C</p>
+                    <p>Humedad: ${data.humidity}%</p>
+                    <p>Humedad del Suelo: ${data.soil_moisture}</p>
+                `;
+            })
+            .catch(error => console.error('Error cargando los datos:', error));
+    </script>
+</body>
+</html>
